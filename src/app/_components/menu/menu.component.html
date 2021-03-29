@@ -1,0 +1,13 @@
+<div class="navi-btn">
+  <input #myInput type="checkbox" class="navi-btn__check" id="navi-toggle" />
+  <label
+    [ngClass]="{ 'bg-white': bgWhite }"
+    (click)="clickButton()"
+    for="navi-toggle"
+    class="navi-btn__btn"
+  >
+    <span class="line line-top">&nbsp;</span>
+    <span class="line line-mid">&nbsp;</span>
+    <span class="line line-buttom">&nbsp;</span>
+  </label>
+</div>
