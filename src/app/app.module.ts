@@ -15,6 +15,9 @@ import { NotFoundComponent } from './_pages/not-found/not-found.component';
 import { LoginComponent } from './_pages/login/login.component';
 import { SignupComponent } from './_pages/signup/signup.component';
 import { ProductsComponent } from './_pages/products/products.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { LineHorizontalComponent } from './_components/line-horizontal/line-horizontal.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,7 @@ import { ProductsComponent } from './_pages/products/products.component';
     LoginComponent,
     SignupComponent,
     ProductsComponent,
+    LineHorizontalComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +39,9 @@ import { ProductsComponent } from './_pages/products/products.component';
     BrowserAnimationsModule,
     MaterialModule,
     FeatherIconModule,
+    FlexLayoutModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

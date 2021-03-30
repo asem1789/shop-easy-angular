@@ -1,4 +1,67 @@
+/*
+  #kyes for short cut
+  px: padding for x-axis => right, lefet
+  py: padding for y-axis => top, buttom
+
+  pl: padding only left
+  pr: padding only right
+  pb: padding only button
+  pt: padding only top
+
+  the same thing with margin change the first letter
+
+
+*/
+
+.max-row {
+  max-width: 1464px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*------------------------*/
+/* Padding */
+
 .px-1 {
-  padding-right: 1rem;
-  padding-left: 1rem;
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+/*------------------------*/
+/* Margin */
+.mb-1 {
+  margin-bottom: 1rem;
+}
+
+.mb-2 {
+  margin-bottom: 2rem;
+}
+
+.mb-3 {
+  margin-bottom: 3rem;
+}
+
+.mb-4 {
+  margin-bottom: 4rem;
+}
+
+/*------------------ Magin Y */
+.my-1 {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+.my-2 {
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+.my-3 {
+  margin-bottom: 3rem;
+  margin-top: 3rem;
+}
+
+.my-4 {
+  margin-bottom: 4rem;
+  margin-top: 4rem;
 }
