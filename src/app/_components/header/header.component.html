@@ -1,24 +1,29 @@
 <div class="header">
-  <div *ngIf="checked" class="side-nav-wrap"></div>
+  <!-- <div class="side-nav-wrap"></div> -->
   <div class="header-top px-1">
     <a routerLink="/" class="logo-wrapper">
       <h1 class="logo">Shop Easy</h1>
     </a>
     <div class="header-btns">
-      <my-menu
-        [bgWhite]="checked"
-        (isChecked)="toggleSideNav($event)"
-      ></my-menu>
-      <!-- <a class="header-btn btn-login" routerLink="/login">Login</a>
-      <a class="header-btn btn-signup" routerLink="/signup">Create Account</a> -->
+      <div fxHide.gt-xs="true">
+        <my-menu></my-menu>
+      </div>
+      <div fxHide.lt-sm="true">
+        <a class="header-btn btn-login" routerLink="/login">Login</a>
+        <a class="header-btn btn-signup" routerLink="/signup">Create Account</a>
+      </div>
     </div>
-    <nav *ngIf="checked" class="side-nav">
+    <nav *ngIf="showSide" class="side-nav" #sideNav>
       <ul>
         <li class="side-item">
-          <a routerLink="/login" class="side-link">Login</a>
+          <a (click)="onCloseSide()" routerLink="/login" class="side-link"
+            >Login</a
+          >
         </li>
         <li class="side-item">
-          <a routerLink="/signup" class="side-link">signup</a>
+          <a (click)="onCloseSide()" routerLink="/signup" class="side-link"
+            >signup</a
+          >
         </li>
       </ul>
     </nav>

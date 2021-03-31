@@ -1,10 +1,11 @@
-<div class="navi-btn">
-  <input #myInput type="checkbox" class="navi-btn__check" id="navi-toggle" />
+<div class="nav-btn">
+  <input type="checkbox" class="fake-input" id="navi-toggle" />
+  <!-- <label for="navi-toggle" class="label" (click)="onClickLabel()" myCloseMenu> -->
   <label
-    [ngClass]="{ 'bg-white': bgWhite }"
-    (click)="clickButton()"
+    [ngClass]="{ 'menu-clicked': clicked }"
     for="navi-toggle"
-    class="navi-btn__btn"
+    class="label"
+    (click)="onClickLabel()"
   >
     <span class="line line-top">&nbsp;</span>
     <span class="line line-mid">&nbsp;</span>

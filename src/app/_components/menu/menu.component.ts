@@ -5,8 +5,9 @@ import {
   Output,
   EventEmitter,
   Input,
+  OnChanges,
 } from '@angular/core';
-import { Subject } from 'rxjs';
+import { UtilsService } from 'src/app/_services/utils.service';
 
 @Component({
   selector: 'my-menu',
@@ -14,15 +15,17 @@ import { Subject } from 'rxjs';
   styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent implements OnInit {
-  @Output() isChecked = new EventEmitter();
-  @Input() bgWhite: string | boolean = false;
-  constructor() {}
+  clicked: boolean = false;
 
-  ngOnInit(): void {}
+  constructor(private utilsService: UtilsService) {}
 
-  @ViewChild('myInput') input!: any;
+  ngOnInit() {
+    this.utilsService.menuBtnToggle.subscribe((isClick) => {
+      this.clicked = isClick;
+    });
+  }
 
-  clickButton() {
-    this.isChecked.emit(!this.input.nativeElement.checked);
+  onClickLabel() {
+    this.utilsService.menuBtnToggle.next(!this.clicked);
   }
 }

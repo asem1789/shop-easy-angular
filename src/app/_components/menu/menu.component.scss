@@ -1,4 +1,4 @@
-.navi-btn {
+.nav-btn {
   position: relative;
   // overflow: hidden;
   height: 4rem;
@@ -8,9 +8,19 @@
   text-align: right;
 }
 
-.navi-btn__btn {
+.btn-input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: block;
+  left: 0;
+  top: 0;
+  // display: none;
+}
+
+.label {
   height: 4rem;
-  width: 4rem;
+  width: 100%;
   z-index: 100;
   cursor: pointer;
 }
@@ -36,25 +46,24 @@
   left: 0;
 }
 
-.navi-btn__check:checked + .navi-btn__btn .line-mid {
+.menu-clicked .line {
+  background-color: var(--white-color);
+}
+
+.menu-clicked .line-mid {
   background-color: transparent;
 }
 
-.navi-btn__check:checked + .navi-btn__btn .line-top {
+.menu-clicked .line-top {
   top: 50%;
   transform: rotate(-135deg);
 }
 
-.navi-btn__check:checked + .navi-btn__btn .line-buttom {
+.menu-clicked .line-buttom {
   top: 50%;
   transform: rotate(135deg);
 }
 
-.navi-btn__check {
+.fake-input {
   display: none;
-}
-
-.bg-white .line-top,
-.bg-white .line-buttom {
-  background-color: var(--white-color) !important;
 }

@@ -67,6 +67,7 @@
 
   &:hover {
     border-bottom: 2px solid var(--primary-bg);
+    opacity: 0.9;
   }
 }
 
@@ -83,10 +84,11 @@
   right: 0;
   top: 0;
   width: 65%;
-  background-color: var(--primary-bg);
+  background: #23282d;
   box-shadow: -2px 0 8px #610802;
   color: #fff;
   padding-top: 5rem;
+  // opacity: 0.9;
   z-index: 10;
 }
 
@@ -105,7 +107,7 @@
 }
 
 .side-link:hover {
-  background-color: #610802;
+  background-color: #f3f3f388;
 }
 
 .side-nav-wrap {
