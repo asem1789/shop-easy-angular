@@ -1,0 +1,41 @@
+<div class="max-row px-1">
+  <div class="card-log">
+    <div class="top-card mb-3">
+      <h2 class="card-title mb-2">Log in</h2>
+      <button class="btn-card btn-google">Log in with Google</button>
+    </div>
+
+    <my-line-horizontal
+      [text]="'Or Log in Here'"
+      class="my-3"
+    ></my-line-horizontal>
+
+    <div class="content-card">
+      <div class="form_group">
+        <input
+          class="input-search"
+          type="email"
+          placeholder="email"
+          name="email"
+          [formControl]="email"
+        />
+        <i-feather name="mail" class="input-icon"></i-feather>
+      </div>
+      <div class="form_group">
+        <input
+          class="input-search"
+          type="password"
+          placeholder="your password"
+          name="password"
+          [formControl]="password"
+        />
+        <i-feather name="lock" class="input-icon"></i-feather>
+      </div>
+    </div>
+    <div class="card-controls">
+      <button (click)="handleSubmit()" class="btn-card btn-active">
+        Sign in
+      </button>
+    </div>
+  </div>
+</div>

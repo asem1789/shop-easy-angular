@@ -1,0 +1,49 @@
+<div class="header">
+  <!-- <div class="side-nav-wrap"></div> -->
+  <div class="header-top px-1">
+    <a routerLink="/" class="logo-wrapper">
+      <h1 class="logo">Shop Easy</h1>
+    </a>
+    <div class="header-btns">
+      <div fxHide.gt-xs="true">
+        <my-menu></my-menu>
+      </div>
+      <div fxHide.lt-sm="true">
+        <a class="header-btn btn-login" routerLink="/login">Login</a>
+        <a class="header-btn btn-signup" routerLink="/signup">Create Account</a>
+      </div>
+    </div>
+    <nav *ngIf="showSide" class="side-nav" #sideNav>
+      <ul>
+        <li class="side-item">
+          <a (click)="onCloseSide()" routerLink="/login" class="side-link"
+            >Login</a
+          >
+        </li>
+        <li class="side-item">
+          <a (click)="onCloseSide()" routerLink="/signup" class="side-link"
+            >signup</a
+          >
+        </li>
+      </ul>
+    </nav>
+
+    <div class="header-shape"></div>
+  </div>
+  <nav class="nav">
+    <ul class="list">
+      <li class="list-item">
+        <a class="list-link" routerLink="/">Home</a>
+      </li>
+      <li class="list-item">
+        <a class="list-link" routerLink="/products">Products</a>
+      </li>
+      <li class="list-item">
+        <a class="list-link" routerLink="/contact">Contact</a>
+      </li>
+      <li class="list-item">
+        <a class="list-link" routerLink="/about">About</a>
+      </li>
+    </ul>
+  </nav>
+</div>

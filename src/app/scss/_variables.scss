@@ -1,10 +1,47 @@
-$primary-color-back: #8e5003;
-$secondary-color-back: #532e00;
+:root {
+  // Main Colors
+  --primary-bg: #27ae60;
+  --secondary-bg: #610802;
 
-$primary-color-front: #212121;
+  --primary-text: #1c1e21;
+  --secondary-text: #f5f6f7;
+  --tertiary-text: #610802;
 
-$gray-0: #f5f6f7;
-$gray-1: #ebedf0;
-$gray-3: #8d949e;
-$gray-4: #444950;
-$gray-5: #303338;
+  // Colors For Gradient
+  --nav-bg-1: #27ae60;
+  --nav-bg-2: #1e8449;
+
+  --placeholder-text: #8d949e;
+
+  // --gray
+  --gray-1: #f7f7f7;
+  --gray-2: #eee;
+  --gray-3: #777;
+  --gray-4: #999;
+  --gray-5: #333;
+
+  --menu-btn-color: #145b32;
+
+  // Colors
+  --white-color: #ffffff;
+
+  // Buttons
+  --btn-main-bg: #27ae60;
+  --btn-main-text: #ffffff;
+
+  --btn-google-bg: #4285f4;
+
+  --btn-disable-bg: #777;
+  --btn-active-bg: #27ae60;
+
+  // Icons
+  --icon-strok-default: #777;
+  --icon-strok-success: #27ae60;
+  --icon-strok-fail: #d51204;
+
+  // Inputs
+  --input-placeholder: #777;
+
+  // Text
+  --error-text: #d8000c;
+}

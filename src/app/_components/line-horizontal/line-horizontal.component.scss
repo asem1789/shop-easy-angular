@@ -1,0 +1,24 @@
+.line-wrap {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.line-text {
+  background-color: var(--white-color);
+  color: var(--forground-secondary);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  font-size: 1.5rem;
+  z-index: 1;
+}
+
+.line-h {
+  border: 0.5px solid var(--gray-3);
+  width: 100%;
+  display: block;
+}

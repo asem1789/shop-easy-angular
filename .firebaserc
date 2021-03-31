@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "shop-easy-angular": {
+      "hosting": {
+        "shop-easy": [
+          "shop-easy-angular"
+        ]
+      }
+    }
+  }
+}
