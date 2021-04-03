@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/_services/auth.service';
+import { UiService } from 'src/app/_services/ui.service';
 
 @Component({
   selector: 'my-login',
@@ -9,12 +11,25 @@ import { FormControl, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
   email = new FormControl('');
   password = new FormControl('');
+  loading: boolean = false;
+  error: string | null = null;
 
-  constructor() {}
+  constructor(private authService: AuthService, private uiService: UiService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.uiService.loadingChanged.subscribe((isload) => {
+      this.loading = isload;
+    });
+    this.uiService.errorStateChanged.subscribe((error) => {
+      this.error = error;
+    });
+  }
 
   handleSubmit() {
-    console.log(this.email.value, this.password.value);
+    this.authService.login(this.email.value, this.password.value);
+  }
+
+  onGoogleAuth() {
+    this.authService.googleAuth();
   }
 }

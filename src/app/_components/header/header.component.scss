@@ -4,8 +4,8 @@
   text-transform: uppercase;
 }
 
-.header-top {
-  height: 5rem;
+.header-flex {
+  height: 6rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -125,4 +125,99 @@ my-menu {
   transform: translateY(-50%);
   right: 2rem;
   z-index: 100;
+}
+
+/*-----------------------------*/
+/* Style of profile  section    */
+.header-profile {
+  position: relative;
+}
+
+.icon-wrap {
+  width: 3.5rem;
+  height: 3.5rem;
+  background-color: var(--gray-2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.icon-wrap:not(:last-child) {
+  margin-right: 2rem;
+}
+
+.nav-icon {
+  width: 1.8rem;
+  height: 1.8rem;
+  stroke: var(--secondary-bg);
+}
+
+.icon-down {
+  fill: var(--secondary-bg);
+}
+
+.profile-spot {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.profile-spot:hover .icon-down,
+.profile-spot:active .icon-down {
+  fill: #d51204;
+  stroke: #d51204;
+  transition: all 0.4s;
+}
+
+.img-wrap {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.img-profile {
+  width: 100%;
+  height: 100%;
+}
+
+.profile-list {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  position: absolute;
+  width: 200px;
+  display: block;
+  border: 1px solid var(--gray-2);
+  border-radius: 5px;
+  top: 100%;
+  transform: translateY(5px);
+  right: 0;
+  background-color: var(--gray-2);
+  z-index: 100;
+}
+
+.profile-line {
+  width: 100%;
+  height: 0.4px;
+  display: inline-block;
+  background-color: var(--gray-3);
+  margin: 1rem 0;
+}
+
+.profile-item {
+  padding: 8px 1rem;
+  font-size: 1.6rem;
+  width: 100%;
+  display: inline-block;
+  cursor: pointer;
+  text-align: left;
+  color: var(--primary-text);
+}
+
+.item-hover:hover,
+.item-hover:active {
+  background-color: #610802dc;
+  color: var(--gray-1);
 }

@@ -1,21 +1,86 @@
 <div class="header">
   <!-- <div class="side-nav-wrap"></div> -->
   <div class="header-top px-1">
-    <a routerLink="/" class="logo-wrapper">
-      <h1 class="logo">Shop Easy</h1>
-    </a>
-    <div class="header-btns">
-      <div fxHide.gt-xs="true">
-        <my-menu></my-menu>
+    <div class="header-flex">
+      <a routerLink="/" class="logo-wrapper">
+        <h1 class="logo">Shop Easy</h1>
+      </a>
+      <div *ngIf="!isAuth" class="header-btns">
+        <div fxHide.gt-xs="true">
+          <my-menu></my-menu>
+        </div>
+        <div fxHide.lt-sm="true">
+          <a class="header-btn btn-login" routerLink="/login">Login</a>
+          <a class="header-btn btn-signup" routerLink="/signup"
+            >Create Account</a
+          >
+        </div>
       </div>
-      <div fxHide.lt-sm="true">
-        <a class="header-btn btn-login" routerLink="/login">Login</a>
-        <a class="header-btn btn-signup" routerLink="/signup">Create Account</a>
+      <div *ngIf="isAuth" class="header-profile">
+        <ul class="list" fxLayout="row">
+          <li class="icon-wrap">
+            <i-feather name="shopping-cart" class="nav-icon"></i-feather>
+          </li>
+          <li class="icon-wrap">
+            <i-feather name="bell" class="nav-icon"></i-feather>
+          </li>
+          <li (click)="toggleDropdownUser()" class="profile-spot">
+            <div class="img-wrap">
+              <img class="img-profile" src="{{ userInfo && userInfo.photo }}" />
+            </div>
+            <i-feather
+              name="arrow-drop-down"
+              class="nav-icon icon-down"
+            ></i-feather>
+          </li>
+        </ul>
+        <div *ngIf="showDorpDown" class="profile-list">
+          <div class="profile-name">
+            <a
+              (click)="showDorpDown = false"
+              routerLink="/me"
+              class="profile-item"
+            >
+              Signed in as <strong>{{ userInfo && userInfo.name }}</strong>
+            </a>
+          </div>
+          <span class="profile-line"></span>
+          <div>
+            <a
+              (click)="showDorpDown = false"
+              routerLink="/orders"
+              class="profile-item item-hover"
+              >Your Orders</a
+            >
+          </div>
+          <div>
+            <a
+              (click)="showDorpDown = false"
+              routerLink="/favorites"
+              class="profile-item item-hover"
+              >Favorite Products</a
+            >
+          </div>
+          <div>
+            <a
+              (click)="showDorpDown = false"
+              routerLink="/setting"
+              class="profile-item item-hover"
+              >Settings</a
+            >
+          </div>
+          <span class="profile-line"></span>
+          <div>
+            <button (click)="onSignout()" class="profile-item item-hover">
+              Sign Out
+            </button>
+          </div>
+        </div>
       </div>
     </div>
     <nav *ngIf="showSide" class="side-nav" #sideNav>
-      <ul>
-        <li class="side-item">
+      <ul *ngIf="!isAuth">
+        <li class="list-item" class="side-item">
           <a (click)="onCloseSide()" routerLink="/login" class="side-link"
             >Login</a
           >

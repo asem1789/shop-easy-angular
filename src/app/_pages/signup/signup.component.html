@@ -2,7 +2,9 @@
   <div class="card-log">
     <div class="top-card mb-3">
       <h2 class="card-title mb-2">Sign Up</h2>
-      <button class="btn-card btn-google">Sign Up with Google</button>
+      <button (click)="onGoogleAuth()" class="btn-card btn-google">
+        Sign Up with Google
+      </button>
     </div>
 
     <my-line-horizontal
@@ -54,7 +56,19 @@
       </div>
     </div>
     <div class="card-controls">
-      <button class="btn-card btn-active">Create Account</button>
+      <p *ngIf="error" class="error">{{ error }} &nbsp;!</p>
+      <button
+        [ngClass]="{ 'btn-loading': loading }"
+        (click)="handleSubmit()"
+        class="btn-card btn-active"
+      >
+        <mat-spinner
+          [diameter]="30"
+          class="btn-spinner"
+          *ngIf="loading"
+        ></mat-spinner>
+        Create Account
+      </button>
     </div>
   </div>
 </div>
