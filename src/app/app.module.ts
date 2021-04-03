@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,6 +22,7 @@ import { ProductsComponent } from './_pages/products/products.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LineHorizontalComponent } from './_components/line-horizontal/line-horizontal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from './_services/auth.service';
 
 @NgModule({
   declarations: [
@@ -42,8 +47,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
