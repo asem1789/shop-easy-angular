@@ -1,1 +1,9 @@
-<p>products works!</p>
+<div class="max-row px-1 product-page">
+  <div class="cards-wrap">
+    <my-card-item
+      *ngFor="let product of products"
+      [item]="product"
+      class="card-item"
+    ></my-card-item>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="card">
+  <div class="like-icon-wrap">
+    <mat-icon mySelectFavorite class="like-icon">favorite_border</mat-icon>
+  </div>
+  <div class="card-header">
+    <img
+      #img
+      class="card-img"
+      src="{{ item.images[currentIndex] }}"
+      alt="product image"
+    />
+
+    <div (click)="handlePrev()" class="btn-controls btn-prev hide">
+      <mat-icon class="btn-icon">chevron_left</mat-icon>
+    </div>
+    <div (click)="handleNext()" class="btn-controls btn-next hide">
+      <mat-icon class="btn-icon">chevron_right</mat-icon>
+    </div>
+    <div class="imgs-info">{{ currentIndex + 1 }}/{{ item.images.length }}</div>
+  </div>
+  <div class="card-detail">
+    <button class="custom-btn hide">Add To Cart</button>
+    <h3 class="item-name">{{ item.name }}</h3>
+    <p class="item-price">{{ item.price | currency }}</p>
+  </div>
+</div>
