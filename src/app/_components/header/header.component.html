@@ -18,8 +18,9 @@
       </div>
       <div *ngIf="isAuth" class="header-profile">
         <ul class="list" fxLayout="row">
-          <li class="icon-wrap">
+          <li class="icon-wrap cart-wrap">
             <i-feather name="shopping-cart" class="nav-icon"></i-feather>
+            <span class="card-count">{{ cartCount }}</span>
           </li>
           <li class="icon-wrap">
             <i-feather name="bell" class="nav-icon"></i-feather>

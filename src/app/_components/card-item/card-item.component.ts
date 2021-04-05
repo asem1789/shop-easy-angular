@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Products } from 'src/app/models/Products';
+import { CartService } from 'src/app/_services/cart.service';
 
 @Component({
   selector: 'my-card-item',
@@ -10,7 +11,7 @@ export class CardItemComponent implements OnInit {
   @Input() item!: Products;
   currentIndex: number = 0;
 
-  constructor() {}
+  constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
     console.log(this.item.images.length);
@@ -30,5 +31,9 @@ export class CardItemComponent implements OnInit {
     } else {
       this.currentIndex--;
     }
+  }
+
+  handleAddToCart() {
+    this.cartService.addItemToCart(this.item);
   }
 }
