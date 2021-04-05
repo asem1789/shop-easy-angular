@@ -1,0 +1,17 @@
+.product-page {
+  padding: 6rem 2rem;
+}
+
+.cards-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.card-item {
+  width: 24%;
+}
+
+.card-item:not(:last-child) {
+  margin-bottom: 3rem;
+}

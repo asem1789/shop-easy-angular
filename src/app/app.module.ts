@@ -23,6 +23,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { LineHorizontalComponent } from './_components/line-horizontal/line-horizontal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './_services/auth.service';
+import { CardItemComponent } from './_components/card-item/card-item.component';
+import { SelectFavoriteDirective } from './shared/directives/select-favorite.directive';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { AuthService } from './_services/auth.service';
     SignupComponent,
     ProductsComponent,
     LineHorizontalComponent,
+    CardItemComponent,
+    SelectFavoriteDirective,
   ],
   imports: [
     BrowserModule,
