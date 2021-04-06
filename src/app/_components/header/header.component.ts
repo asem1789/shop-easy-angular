@@ -62,4 +62,12 @@ export class HeaderComponent implements OnInit {
   onClickCartIcon() {
     this.showDropDownCart = !this.showDropDownCart;
   }
+
+  onClickOutside(type: string) {
+    if (type === 'user') {
+      this.showDorpDown = false;
+    } else if (type === 'cart') {
+      this.showDropDownCart = false;
+    }
+  }
 }
