@@ -1,0 +1,32 @@
+<div class="cart-screen">
+  <span *ngIf="items.length < 1" class="screen-info">Your Cart Is Empty!</span>
+  <ng-container *ngIf="items.length > 0">
+    <div class="screen-header">
+      <h4 class="total-copy">
+        Total Price:
+        <span class="price-total">{{ countTotalPrice() | currency }}</span>
+      </h4>
+    </div>
+    <div class="table">
+      <div class="table-head">
+        <span>Name</span>
+        <span>Price/uint</span>
+        <span>Count</span>
+        <span>Total</span>
+        <span>Item Image</span>
+      </div>
+      <div *ngFor="let item of items" class="table-row">
+        <span>{{ item.name }}</span>
+        <span>{{ item.price }}</span>
+        <span>{{ item.quantity }}</span>
+        <span>{{ item.price * item.quantity }}</span>
+        <span>
+          <img class="img-item" src="{{ item.images[0] }}" />
+        </span>
+      </div>
+    </div>
+    <div class="screen-footer">
+      <button routerLink="/checkout" class="btn">Check Your Cart</button>
+    </div>
+  </ng-container>
+</div>

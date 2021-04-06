@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './_pages/about/about.component';
+import { CheckoutComponent } from './_pages/checkout/checkout.component';
 import { ContactComponent } from './_pages/contact/contact.component';
 import { HomeComponent } from './_pages/home/home.component';
 import { LoginComponent } from './_pages/login/login.component';
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'about', component: AboutComponent },
+  { path: 'checkout', component: CheckoutComponent },
   { path: '**', component: NotFoundComponent },
 ];
 

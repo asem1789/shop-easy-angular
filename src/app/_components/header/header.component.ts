@@ -1,6 +1,7 @@
 import { Component, HostListener, OnChanges, OnInit } from '@angular/core';
-import { User } from 'src/app/models';
+import { CartInfo, User } from 'src/app/models';
 import { AuthService } from 'src/app/_services/auth.service';
+import { CartService } from 'src/app/_services/cart.service';
 import { UtilsService } from 'src/app/_services/utils.service';
 
 @Component({
@@ -13,10 +14,14 @@ export class HeaderComponent implements OnInit {
   showDorpDown: boolean = false;
   isAuth = false;
   userInfo!: User;
+  cartCount: number = 0;
+  showDropDownCart: boolean = false;
+  itemsSelected: CartInfo[] = [];
 
   constructor(
     private utilsService: UtilsService,
-    private authService: AuthService
+    private authService: AuthService,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
@@ -31,6 +36,14 @@ export class HeaderComponent implements OnInit {
     this.authService.userData.subscribe((user) => {
       this.userInfo = user;
     });
+
+    this.cartService.cartItemsCount.subscribe((le) => {
+      this.cartCount = le;
+    });
+
+    this.cartService.cartItemsChanged.subscribe((items) => {
+      this.itemsSelected = items;
+    });
   }
 
   onCloseSide() {
@@ -44,5 +57,17 @@ export class HeaderComponent implements OnInit {
   onSignout() {
     this.showDorpDown = false;
     this.authService.logout();
+  }
+
+  onClickCartIcon() {
+    this.showDropDownCart = !this.showDropDownCart;
+  }
+
+  onClickOutside(type: string) {
+    if (type === 'user') {
+      this.showDorpDown = false;
+    } else if (type === 'cart') {
+      this.showDropDownCart = false;
+    }
   }
 }

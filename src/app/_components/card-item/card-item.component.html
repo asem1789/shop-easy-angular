@@ -19,7 +19,9 @@
     <div class="imgs-info">{{ currentIndex + 1 }}/{{ item.images.length }}</div>
   </div>
   <div class="card-detail">
-    <button class="custom-btn hide">Add To Cart</button>
+    <button (click)="handleAddToCart()" class="custom-btn hide">
+      Add To Cart
+    </button>
     <h3 class="item-name">{{ item.name }}</h3>
     <p class="item-price">{{ item.price | currency }}</p>
   </div>
