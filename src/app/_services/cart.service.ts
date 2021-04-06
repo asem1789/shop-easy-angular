@@ -6,7 +6,7 @@ import { CartInfo } from '../models';
   providedIn: 'root',
 })
 export class CartService implements OnInit {
-  cartItemsAdded = new Subject<CartInfo[]>();
+  cartItemsChanged = new Subject<CartInfo[]>();
   cartItems: CartInfo[] = [];
   cartItemsCount = new Subject<number>();
 
@@ -23,13 +23,49 @@ export class CartService implements OnInit {
           ? { ...cartItem, quantity: cartItem.quantity + 1 }
           : cartItem;
       });
-      this.cartItemsAdded.next(this.cartItems);
+      this.cartItemsChanged.next(this.cartItems);
     } else {
       this.cartItems = [...this.cartItems, { ...item, quantity: 1 }];
-      this.cartItemsAdded.next(this.cartItems);
+      this.cartItemsChanged.next(this.cartItems);
     }
 
     this.countOfItems();
+  }
+
+  removeItemFromCart(itemRemoved: any) {
+    let currentItem = this.cartItems.find(
+      (cartItem) => cartItem.id === itemRemoved.id
+    );
+
+    if (currentItem && currentItem.quantity === 1) return;
+
+    this.cartItems = this.cartItems.map((cartItem) => {
+      return cartItem.id === itemRemoved.id
+        ? { ...cartItem, quantity: cartItem.quantity - 1 }
+        : cartItem;
+    });
+    this.cartItemsChanged.next(this.cartItems);
+
+    this.countOfItems();
+  }
+
+  clearItem(itemCleard: any) {
+    let currentItem = this.cartItems.find(
+      (cartItem) => cartItem.id === itemCleard.id
+    );
+
+    if (!currentItem) return;
+
+    this.cartItems = this.cartItems.filter((cartItem) => {
+      return cartItem.id !== itemCleard.id;
+    });
+    this.cartItemsChanged.next(this.cartItems);
+
+    this.countOfItems();
+  }
+
+  get allItems() {
+    return this.cartItems;
   }
 
   private countOfItems() {

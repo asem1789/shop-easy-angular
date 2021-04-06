@@ -27,6 +27,7 @@ import { CardItemComponent } from './_components/card-item/card-item.component';
 import { SelectFavoriteDirective } from './shared/directives/select-favorite.directive';
 import { DorpDownCartComponent } from './_components/dorp-down-cart/dorp-down-cart.component';
 import { ClickOutsideDirective } from './shared/directives/click-outside.directive';
+import { CheckoutComponent } from './_pages/checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { ClickOutsideDirective } from './shared/directives/click-outside.directi
     SelectFavoriteDirective,
     DorpDownCartComponent,
     ClickOutsideDirective,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,
