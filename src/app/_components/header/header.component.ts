@@ -37,13 +37,16 @@ export class HeaderComponent implements OnInit {
       this.userInfo = user;
     });
 
-    this.cartService.cartItemsCount.subscribe((le) => {
+    this.cartService.cartItemsCountChanged.subscribe((le) => {
       this.cartCount = le;
     });
 
     this.cartService.cartItemsChanged.subscribe((items) => {
       this.itemsSelected = items;
     });
+
+    this.cartCount = this.cartService.getCountItems;
+    this.itemsSelected = this.cartService.allItems;
   }
 
   onCloseSide() {

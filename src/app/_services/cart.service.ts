@@ -1,16 +1,38 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { CartInfo } from '../models';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService implements OnInit {
   cartItemsChanged = new Subject<CartInfo[]>();
-  cartItems: CartInfo[] = [];
-  cartItemsCount = new Subject<number>();
+  cartItemsCountChanged = new Subject<number>();
+  private cartItems: CartInfo[] = [];
+  private cartItemsCount: number = 0;
 
-  ngOnInit() {}
+  private CART_ITEM_KEY: string = 'CARTITEM';
+
+  constructor(private localStgSrv: LocalStorageService) {}
+
+  ngOnInit() {
+    this.cartListiner();
+  }
+
+  cartListiner() {
+    this.loadCartItems();
+    this.countOfItems();
+  }
+
+  private loadCartItems() {
+    const value = this.localStgSrv.get(this.CART_ITEM_KEY) || [];
+    this.cartItems = [...value];
+  }
+
+  private storeCartItems() {
+    this.localStgSrv.set(this.CART_ITEM_KEY, this.cartItems);
+  }
 
   addItemToCart(item: any) {
     let currentItem = this.cartItems.find(
@@ -29,6 +51,7 @@ export class CartService implements OnInit {
       this.cartItemsChanged.next(this.cartItems);
     }
 
+    this.storeCartItems();
     this.countOfItems();
   }
 
@@ -46,6 +69,7 @@ export class CartService implements OnInit {
     });
     this.cartItemsChanged.next(this.cartItems);
 
+    this.storeCartItems();
     this.countOfItems();
   }
 
@@ -61,6 +85,7 @@ export class CartService implements OnInit {
     });
     this.cartItemsChanged.next(this.cartItems);
 
+    this.storeCartItems();
     this.countOfItems();
   }
 
@@ -68,10 +93,15 @@ export class CartService implements OnInit {
     return this.cartItems;
   }
 
+  get getCountItems() {
+    return this.cartItemsCount;
+  }
+
   private countOfItems() {
     const count = this.cartItems.reduce((acc, curr) => {
       return acc + curr.quantity;
     }, 0);
-    this.cartItemsCount.next(count);
+    this.cartItemsCountChanged.next(count);
+    this.cartItemsCount = count;
   }
 }
