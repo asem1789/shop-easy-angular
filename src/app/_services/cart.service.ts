@@ -6,6 +6,7 @@ import { CartInfo } from '../models';
   providedIn: 'root',
 })
 export class CartService implements OnInit {
+  cartItemsAdded = new Subject<CartInfo[]>();
   cartItems: CartInfo[] = [];
   cartItemsCount = new Subject<number>();
 
@@ -22,8 +23,10 @@ export class CartService implements OnInit {
           ? { ...cartItem, quantity: cartItem.quantity + 1 }
           : cartItem;
       });
+      this.cartItemsAdded.next(this.cartItems);
     } else {
       this.cartItems = [...this.cartItems, { ...item, quantity: 1 }];
+      this.cartItemsAdded.next(this.cartItems);
     }
 
     this.countOfItems();

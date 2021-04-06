@@ -1,5 +1,5 @@
 import { Component, HostListener, OnChanges, OnInit } from '@angular/core';
-import { User } from 'src/app/models';
+import { CartInfo, User } from 'src/app/models';
 import { AuthService } from 'src/app/_services/auth.service';
 import { CartService } from 'src/app/_services/cart.service';
 import { UtilsService } from 'src/app/_services/utils.service';
@@ -15,6 +15,8 @@ export class HeaderComponent implements OnInit {
   isAuth = false;
   userInfo!: User;
   cartCount: number = 0;
+  showDropDownCart: boolean = false;
+  itemsSelected: CartInfo[] = [];
 
   constructor(
     private utilsService: UtilsService,
@@ -38,6 +40,10 @@ export class HeaderComponent implements OnInit {
     this.cartService.cartItemsCount.subscribe((le) => {
       this.cartCount = le;
     });
+
+    this.cartService.cartItemsAdded.subscribe((items) => {
+      this.itemsSelected = items;
+    });
   }
 
   onCloseSide() {
@@ -51,5 +57,9 @@ export class HeaderComponent implements OnInit {
   onSignout() {
     this.showDorpDown = false;
     this.authService.logout();
+  }
+
+  onClickCartIcon() {
+    this.showDropDownCart = !this.showDropDownCart;
   }
 }

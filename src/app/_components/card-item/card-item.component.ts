@@ -13,9 +13,7 @@ export class CardItemComponent implements OnInit {
 
   constructor(private cartService: CartService) {}
 
-  ngOnInit(): void {
-    console.log(this.item.images.length);
-  }
+  ngOnInit(): void {}
 
   handleNext() {
     if (this.currentIndex < this.item.images.length - 1) {

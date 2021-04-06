@@ -18,9 +18,13 @@
       </div>
       <div *ngIf="isAuth" class="header-profile">
         <ul class="list" fxLayout="row">
-          <li class="icon-wrap cart-wrap">
+          <li (click)="onClickCartIcon()" class="icon-wrap cart-wrap">
             <i-feather name="shopping-cart" class="nav-icon"></i-feather>
             <span class="card-count">{{ cartCount }}</span>
+            <my-dorp-down-cart
+              [items]="itemsSelected"
+              *ngIf="showDropDownCart"
+            ></my-dorp-down-cart>
           </li>
           <li class="icon-wrap">
             <i-feather name="bell" class="nav-icon"></i-feather>
