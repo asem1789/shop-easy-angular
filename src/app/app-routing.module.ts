@@ -7,6 +7,7 @@ import { HomeComponent } from './_pages/home/home.component';
 import { LoginComponent } from './_pages/login/login.component';
 import { NotFoundComponent } from './_pages/not-found/not-found.component';
 import { ProductsComponent } from './_pages/products/products.component';
+import { ProfileComponent } from './_pages/profile/profile.component';
 import { SignupComponent } from './_pages/signup/signup.component';
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'about', component: AboutComponent },
   { path: 'checkout', component: CheckoutComponent },
+  { path: 'me', component: ProfileComponent },
   { path: '**', component: NotFoundComponent },
 ];
 

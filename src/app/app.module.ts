@@ -28,6 +28,11 @@ import { SelectFavoriteDirective } from './shared/directives/select-favorite.dir
 import { DorpDownCartComponent } from './_components/dorp-down-cart/dorp-down-cart.component';
 import { ClickOutsideDirective } from './shared/directives/click-outside.directive';
 import { CheckoutComponent } from './_pages/checkout/checkout.component';
+import { ProfileComponent } from './_pages/profile/profile.component';
+import { TabSettingsComponent } from './_pages/profile/tab-settings/tab-settings.component';
+import { TabOrdersComponent } from './_pages/profile/tab-orders/tab-orders.component';
+import { TabFavoritesComponent } from './_pages/profile/tab-favorites/tab-favorites.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -47,9 +52,14 @@ import { CheckoutComponent } from './_pages/checkout/checkout.component';
     DorpDownCartComponent,
     ClickOutsideDirective,
     CheckoutComponent,
+    ProfileComponent,
+    TabSettingsComponent,
+    TabOrdersComponent,
+    TabFavoritesComponent,
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,

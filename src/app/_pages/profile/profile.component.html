@@ -1,0 +1,53 @@
+<div class="max-row px-1 profile-page">
+  <div class="profile-content">
+    <div class="panel">
+      <div class="panel-top">
+        <div class="user-img-wrap">
+          <img class="user-img" src="../../../assets/images/user.png" />
+        </div>
+        <h2 class="user-name">Asem AbuMusameh</h2>
+      </div>
+      <div class="panel-bottom">
+        <div class="panel-content">
+          <ul class="list">
+            <li class="list-item">
+              <a
+                (click)="onClickTab('orders')"
+                [ngClass]="{ 'active-link': currentTab === 'orders' }"
+                class="list-link"
+                >Your Orders</a
+              >
+            </li>
+            <li class="list-item">
+              <a
+                (click)="onClickTab('favorites')"
+                [ngClass]="{ 'active-link': currentTab === 'favorites' }"
+                class="list-link"
+                >Your Favorites</a
+              >
+            </li>
+            <li class="list-item">
+              <a
+                (click)="onClickTab('settings')"
+                [ngClass]="{ 'active-link': currentTab === 'settings' }"
+                class="list-link"
+                >Your Settings</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="profile-tabs">
+      <div *ngIf="isCurrentTab('settings')" class="tab">
+        <my-tab-settings></my-tab-settings>
+      </div>
+      <div *ngIf="isCurrentTab('orders')" class="tab">
+        <my-tab-orders></my-tab-orders>
+      </div>
+      <div *ngIf="isCurrentTab('favorites')" class="tab">
+        <my-tab-favorites></my-tab-favorites>
+      </div>
+    </div>
+  </div>
+</div>
