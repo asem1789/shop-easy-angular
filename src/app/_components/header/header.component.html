@@ -56,14 +56,15 @@
               routerLink="/me"
               class="profile-item"
             >
-              Signed in as <strong>{{ userInfo && userInfo.name }}</strong>
+              Welcome: <strong>{{ userInfo && userInfo.name }}</strong>
             </a>
           </div>
           <span class="profile-line"></span>
           <div>
             <a
               (click)="showDorpDown = false"
-              routerLink="/orders"
+              [routerLink]="['/me']"
+              [queryParams]="{ tab: 'orders' }"
               class="profile-item item-hover"
               >Your Orders</a
             >
@@ -71,7 +72,8 @@
           <div>
             <a
               (click)="showDorpDown = false"
-              routerLink="/favorites"
+              [routerLink]="['/me']"
+              [queryParams]="{ tab: 'favorites' }"
               class="profile-item item-hover"
               >Favorite Products</a
             >
@@ -79,7 +81,8 @@
           <div>
             <a
               (click)="showDorpDown = false"
-              routerLink="/setting"
+              [routerLink]="['/me']"
+              [queryParams]="{ tab: 'settings' }"
               class="profile-item item-hover"
               >Settings</a
             >
