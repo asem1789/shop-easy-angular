@@ -1,5 +1,5 @@
 <div class="max-row px-1 checkout">
-  <div>
+  <div class="table-wrap">
     <div class="table">
       <div class="table-head">
         <span>Item Image</span>
@@ -38,11 +38,22 @@
       </div>
       <div class="last-row">
         <span class="last-total">Total Price</span>
-        <span class="last-price">{{ countTotalPrice() | currency }}</span>
+        <span class="last-price">{{ totalPrice | currency }}</span>
       </div>
     </div>
     <div *ngIf="items.length > 0" class="check-footer">
-      <button class="btn-order">Buy Now</button>
+      <button
+        [ngClass]="{ 'btn-disable': loading }"
+        (click)="submitOrder()"
+        class="btn-order"
+      >
+        Buy Now
+      </button>
     </div>
+    <mat-spinner
+      class="loading-icon"
+      *ngIf="loading"
+      strokeWidth="4"
+    ></mat-spinner>
   </div>
 </div>

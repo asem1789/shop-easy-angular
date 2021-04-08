@@ -5,6 +5,9 @@
   margin-bottom: 60px;
   font-size: 1.5rem;
 }
+.table-wrap {
+  position: relative;
+}
 
 .table {
   width: 500px;
@@ -131,4 +134,19 @@
 .icon-disable {
   pointer-events: none;
   color: var(--icon-strok-default);
+}
+
+.loading-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.loading-icon::ng-deep circle {
+  stroke: var(--spinner-stroke);
+}
+
+.btn-disable {
+  pointer-events: none;
 }
