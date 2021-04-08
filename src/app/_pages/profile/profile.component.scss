@@ -1,5 +1,6 @@
 .profile-page {
   padding: 50px 40px;
+  position: relative;
 }
 
 .profile-content {
@@ -13,6 +14,10 @@
   flex-direction: column;
   align-items: center;
   margin-right: 20px;
+}
+
+.profile-tabs {
+  width: 100%;
 }
 
 .panel-top {
@@ -93,4 +98,15 @@
 
 .hide {
   display: none !important;
+}
+
+.loading-icon {
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.loading-icon::ng-deep circle {
+  stroke: var(--spinner-stroke);
 }

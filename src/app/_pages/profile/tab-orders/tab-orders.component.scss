@@ -1,0 +1,83 @@
+.order-table {
+  padding-top: 50px;
+}
+
+.tab-content {
+  position: relative;
+}
+
+.order-title {
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 500;
+}
+
+.table {
+  width: 100%;
+}
+
+.table-head {
+  border-bottom: 1px solid var(--gray-3);
+}
+
+.table-row span {
+  padding: 5px;
+  display: inline-block;
+  font-size: 1.5rem;
+  width: 20%;
+}
+
+.table-head span {
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.table-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.table-body {
+  margin-top: 10px;
+}
+
+.btn-details {
+  font-weight: 600;
+  border: 1px solid #0a5cad;
+  padding: 2px 4px;
+  border-radius: 4px;
+  color: #131061;
+  transition: all 0.4s;
+}
+
+.btn-details:hover,
+.btn-details:active {
+  background-color: #0a5cad;
+  color: #fff;
+}
+
+.btn-cancel {
+  font-weight: 600;
+  border: 1px solid #ff5722;
+  padding: 2px 4px;
+  border-radius: 4px;
+  color: #d51204;
+  transition: all 0.4s;
+}
+
+.btn-cancel:hover,
+.btn-cancel:active {
+  background-color: #d51204;
+  color: #fff;
+}
+
+.loading-icon {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.loading-icon::ng-deep circle {
+  stroke: var(--spinner-stroke);
+}
