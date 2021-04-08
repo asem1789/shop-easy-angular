@@ -23,7 +23,7 @@ export class CheckoutComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.items = this.cartService.allItems;
+    this.items = this.cartService.getAllItems();
     this.cartService.cartItemsChanged.subscribe((items) => {
       this.items = items;
     });
@@ -56,7 +56,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   private mangeProductsRef() {
-    const items = this.cartService.allItems;
+    const items = this.cartService.getAllItems();
     let result: any = [];
     items.forEach((el) => {
       result.push({ count: el.quantity, id: el.id });

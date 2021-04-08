@@ -19,11 +19,11 @@ export class AppComponent implements OnInit {
     this.authService.authListener();
     /**
      * @question_1
-     * I've to call this cartListiner() function in order get info about cartItems
+     * I've to call this loadCartItems() function in order get info about cartItems
      * => but I can delete it from here, and put this function in the
      * carService in constructor, It'll work?
      * @What is the better way and what's diffrent
      */
-    this.cartService.cartListiner();
+    this.cartService.loadCartItems();
   }
 }
