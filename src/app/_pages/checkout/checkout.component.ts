@@ -13,7 +13,7 @@ import { UiService } from 'src/app/_services/ui.service';
 export class CheckoutComponent implements OnInit {
   items!: CartInfo[];
   totalPrice: number = 0;
-  loading: boolean = false;
+  loadSending: boolean = false;
 
   constructor(
     private cartService: CartService,
@@ -24,16 +24,23 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.items = this.cartService.getAllItems();
+
     this.cartService.cartItemsChanged.subscribe((items) => {
       this.items = items;
     });
+
     this.uiService.loadingChanged.subscribe((isLoad) => {
-      this.loading = isLoad;
+      this.loadSending = isLoad;
     });
+
     this.countTotalPrice();
   }
 
   countTotalPrice() {
+    if (this.items.length < 1) {
+      this.totalPrice = 0;
+      return;
+    }
     const result = this.items.reduce((acc, curr) => {
       return acc + (curr.quantity ? curr.quantity * curr.price : curr.price);
     }, 0);

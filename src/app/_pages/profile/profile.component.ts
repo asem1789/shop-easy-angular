@@ -10,9 +10,8 @@ import { AuthService } from 'src/app/_services/auth.service';
 })
 export class ProfileComponent implements OnInit {
   currentTab: string = 'orders';
-  isAuth: boolean = false;
   loading: boolean = false;
-  userInfo!: User;
+  userInfo: User | null = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,13 +20,8 @@ export class ProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    /**
-     * @note
-     * to ensur not render page profile until result of authChnage come from firebase
-     */
     this.authService.userInfoChange.subscribe((user) => {
-      this.loading = false;
-      this.isAuth = !!user;
+      this.userInfo = user;
     });
 
     this.route.queryParams.subscribe((params) => {
@@ -37,18 +31,10 @@ export class ProfileComponent implements OnInit {
       this.currentTab = params.tab;
     });
 
-    this.isAuth = this.authService.isLogged();
-    this.authService.userInfoChange.subscribe((user: any) => {
-      this.userInfo = user;
-    });
+    this.userInfo = this.authService.getUserInfo();
   }
 
   onClickTab(key: string) {
-    console.log('tab clicked: ', key);
     this.router.navigate(['/me'], { queryParams: { tab: key } });
-  }
-
-  isCurrentTab(el: string) {
-    return el === this.currentTab;
   }
 }

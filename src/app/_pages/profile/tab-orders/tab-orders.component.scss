@@ -81,3 +81,10 @@
 .loading-icon::ng-deep circle {
   stroke: var(--spinner-stroke);
 }
+
+.message {
+  font-size: 1.8rem;
+  margin-top: 25px;
+  color: #17a2b8;
+  padding-left: 20px;
+}

@@ -80,9 +80,9 @@ export class CartService implements OnInit {
   }
 
   clearAll() {
-    if (!this.cartItems.length) return;
     this.cartItems = [];
     this.cartItemsChanged.next([]);
+    this.storeCartItems();
   }
 
   getAllItems() {

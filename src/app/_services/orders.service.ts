@@ -12,7 +12,7 @@ import { Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class OrdersService implements OnInit {
-  ordersByIdChanged = new Subject<any[]>();
+  ordersByUserChange = new Subject<any[]>();
   private ordersById: any[] = [];
 
   constructor(
@@ -44,7 +44,7 @@ export class OrdersService implements OnInit {
             data.push({ id: el.id, ...el.data() });
           });
           this.uiService.loadingChanged.next(false);
-          this.ordersByIdChanged.next(data);
+          this.ordersByUserChange.next(data);
           return data;
         })
       );
@@ -52,19 +52,17 @@ export class OrdersService implements OnInit {
 
   saveOrder(order: OrdersInfo) {
     this.uiService.loadingChanged.next(true);
-    this.cartService.clearAll();
-
-    // this.db
-    //   .collection('orders')
-    //   .add(order)
-    //   .then(() => {
-    //     this.uiService.loadingChanged.next(false);
-    //     this.cartService.clearAll();
-    //     this.router.navigate(['/me'], { queryParams: { tab: 'orders' } });
-    //   })
-    //   .catch((err) => {
-    //     this.uiService.loadingChanged.next(false);
-    //     console.log('error from save ORder: ', err);
-    //   });
+    this.db
+      .collection('orders')
+      .add(order)
+      .then(() => {
+        this.uiService.loadingChanged.next(false);
+        this.cartService.clearAll();
+        this.router.navigate(['/me'], { queryParams: { tab: 'orders' } });
+      })
+      .catch((err) => {
+        this.uiService.loadingChanged.next(false);
+        console.log('error from save ORder: ', err);
+      });
   }
 }

@@ -37,7 +37,6 @@ const handleError = (err: any) => {
 export class AuthService {
   userInfoChange = new Subject<User | null>();
   private userInfo: User | null = null;
-  private isAuth: boolean = false;
 
   constructor(
     private afstore: AngularFirestore,

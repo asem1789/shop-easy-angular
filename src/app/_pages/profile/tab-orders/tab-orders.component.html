@@ -1,7 +1,10 @@
 <div class="order-tab">
   <h2 class="order-title">Manage Your Orders</h2>
   <div class="tab-content">
-    <div *ngIf="orders" class="table order-table">
+    <p *ngIf="!loading && orders!.length === 0" class="message">
+      There's No any orders!!!
+    </p>
+    <div *ngIf="orders!.length > 0" class="table order-table">
       <div class="table-head">
         <div class="table-row">
           <span>Date</span>
