@@ -8,7 +8,6 @@ import { LocalStorageService } from './local-storage.service';
 })
 export class CartService implements OnInit {
   cartItemsChanged = new Subject<CartInfo[]>();
-  cartItemsCountChanged = new Subject<number>();
   private cartItems: CartInfo[] = [];
   private cartItemsCount: number = 0;
 
@@ -16,18 +15,12 @@ export class CartService implements OnInit {
 
   constructor(private localStgSrv: LocalStorageService) {}
 
-  ngOnInit() {
-    this.cartListiner();
-  }
+  ngOnInit() {}
 
-  cartListiner() {
-    this.loadCartItems();
-    this.countOfItems();
-  }
-
-  private loadCartItems() {
+  loadCartItems() {
     const value = this.localStgSrv.get(this.CART_ITEM_KEY) || [];
     this.cartItems = [...value];
+    this.cartItemsCount = this.countOfItems();
   }
 
   private storeCartItems() {
@@ -52,7 +45,6 @@ export class CartService implements OnInit {
     }
 
     this.storeCartItems();
-    this.countOfItems();
   }
 
   removeItemFromCart(itemRemoved: any) {
@@ -70,7 +62,6 @@ export class CartService implements OnInit {
     this.cartItemsChanged.next(this.cartItems);
 
     this.storeCartItems();
-    this.countOfItems();
   }
 
   clearItem(itemCleard: any) {
@@ -86,31 +77,25 @@ export class CartService implements OnInit {
     this.cartItemsChanged.next(this.cartItems);
 
     this.storeCartItems();
-    this.countOfItems();
   }
 
   clearAll() {
-    if (!this.cartItems.length) return;
-
     this.cartItems = [];
-    this.cartItemsChanged.next(this.cartItems);
+    this.cartItemsChanged.next([]);
     this.storeCartItems();
-    this.countOfItems();
   }
 
-  get allItems() {
+  getAllItems() {
     return this.cartItems;
   }
 
-  get getCountItems() {
+  getCountItems() {
     return this.cartItemsCount;
   }
 
   private countOfItems() {
-    const count = this.cartItems.reduce((acc, curr) => {
+    return this.cartItems.reduce((acc, curr) => {
       return acc + curr.quantity;
     }, 0);
-    this.cartItemsCountChanged.next(count);
-    this.cartItemsCount = count;
   }
 }

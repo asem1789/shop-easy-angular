@@ -12,7 +12,7 @@ import { Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class OrdersService implements OnInit {
-  ordersByIdChanged = new Subject<any[]>();
+  ordersByUserChange = new Subject<any[]>();
   private ordersById: any[] = [];
 
   constructor(
@@ -27,7 +27,13 @@ export class OrdersService implements OnInit {
 
   fetchOrdersByUser() {
     this.uiService.loadingChanged.next(true);
-    const userId = this.authService.getUserInfo().id;
+    let userId: any;
+    let user = this.authService.getUserInfo();
+    if (user && user.id) {
+      userId = user.id;
+    } else {
+      return;
+    }
     return this.db
       .collection('orders', (ref) => ref.where('user', '==', userId))
       .get()
@@ -38,7 +44,7 @@ export class OrdersService implements OnInit {
             data.push({ id: el.id, ...el.data() });
           });
           this.uiService.loadingChanged.next(false);
-          this.ordersByIdChanged.next(data);
+          this.ordersByUserChange.next(data);
           return data;
         })
       );
@@ -46,7 +52,6 @@ export class OrdersService implements OnInit {
 
   saveOrder(order: OrdersInfo) {
     this.uiService.loadingChanged.next(true);
-
     this.db
       .collection('orders')
       .add(order)

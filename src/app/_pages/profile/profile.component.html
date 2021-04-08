@@ -1,9 +1,9 @@
 <div class="max-row px-1 profile-page">
-  <div *ngIf="isAuth" class="profile-content">
+  <div *ngIf="userInfo" class="profile-content">
     <div class="panel">
       <div class="panel-top">
         <div class="user-img-wrap">
-          <img class="user-img" src="../../../assets/images/user.png" />
+          <img class="user-img" src="{{ userInfo.photo }}" />
         </div>
         <h2 class="user-name">{{ userInfo.name }}</h2>
       </div>
@@ -39,13 +39,13 @@
       </div>
     </div>
     <div class="profile-tabs">
-      <div *ngIf="isCurrentTab('settings')" class="tab">
+      <div *ngIf="currentTab === 'settings'" class="tab">
         <my-tab-settings></my-tab-settings>
       </div>
-      <div *ngIf="isCurrentTab('orders')" class="tab">
+      <div *ngIf="currentTab === 'orders'" class="tab">
         <my-tab-orders></my-tab-orders>
       </div>
-      <div *ngIf="isCurrentTab('favorites')" class="tab">
+      <div *ngIf="currentTab === 'favorites'" class="tab">
         <my-tab-favorites></my-tab-favorites>
       </div>
     </div>

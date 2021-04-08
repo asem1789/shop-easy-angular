@@ -43,7 +43,7 @@
     </div>
     <div *ngIf="items.length > 0" class="check-footer">
       <button
-        [ngClass]="{ 'btn-disable': loading }"
+        [ngClass]="{ 'btn-disable': loadSending }"
         (click)="submitOrder()"
         class="btn-order"
       >
@@ -52,7 +52,7 @@
     </div>
     <mat-spinner
       class="loading-icon"
-      *ngIf="loading"
+      *ngIf="loadSending"
       strokeWidth="4"
     ></mat-spinner>
   </div>

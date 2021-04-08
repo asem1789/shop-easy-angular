@@ -12,8 +12,7 @@ import { UtilsService } from 'src/app/_services/utils.service';
 export class HeaderComponent implements OnInit {
   showSide: boolean = false;
   showDorpDown: boolean = false;
-  isAuth = false;
-  userInfo!: User;
+  userInfo: User | null = null;
   cartCount: number = 0;
   showDropDownCart: boolean = false;
   itemsSelected: CartInfo[] = [];
@@ -29,24 +28,17 @@ export class HeaderComponent implements OnInit {
       this.showSide = res;
     });
 
-    this.authService.authChange.subscribe((authStatus) => {
-      this.isAuth = authStatus;
-    });
-
-    this.authService.userData.subscribe((user) => {
+    this.authService.userInfoChange.subscribe((user) => {
       this.userInfo = user;
-    });
-
-    this.cartService.cartItemsCountChanged.subscribe((le) => {
-      this.cartCount = le;
     });
 
     this.cartService.cartItemsChanged.subscribe((items) => {
       this.itemsSelected = items;
+      this.cartCount = this.countOfItems(items);
     });
 
-    this.cartCount = this.cartService.getCountItems;
-    this.itemsSelected = this.cartService.allItems;
+    this.cartCount = this.cartService.getCountItems();
+    this.itemsSelected = this.cartService.getAllItems();
   }
 
   onCloseSide() {
@@ -72,5 +64,11 @@ export class HeaderComponent implements OnInit {
     } else if (type === 'cart') {
       this.showDropDownCart = false;
     }
+  }
+
+  private countOfItems(items: any[]) {
+    return items.reduce((acc, curr) => {
+      return acc + curr.quantity;
+    }, 0);
   }
 }

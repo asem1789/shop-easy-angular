@@ -5,7 +5,7 @@
       <a routerLink="/" class="logo-wrapper">
         <h1 class="logo">Shop Easy</h1>
       </a>
-      <div *ngIf="!isAuth" class="header-btns">
+      <div *ngIf="!userInfo" class="header-btns">
         <div fxHide.gt-xs="true">
           <my-menu></my-menu>
         </div>
@@ -16,7 +16,7 @@
           >
         </div>
       </div>
-      <div *ngIf="isAuth" class="header-profile">
+      <div *ngIf="userInfo" class="header-profile">
         <ul class="list" fxLayout="row">
           <li
             (click)="onClickCartIcon()"
@@ -97,7 +97,7 @@
       </div>
     </div>
     <nav *ngIf="showSide" class="side-nav" #sideNav>
-      <ul *ngIf="!isAuth">
+      <ul *ngIf="!userInfo">
         <li class="list-item" class="side-item">
           <a (click)="onCloseSide()" routerLink="/login" class="side-link"
             >Login</a

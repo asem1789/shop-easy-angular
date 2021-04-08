@@ -9,7 +9,7 @@ import { UiService } from 'src/app/_services/ui.service';
   styleUrls: ['./tab-orders.component.scss'],
 })
 export class TabOrdersComponent implements OnInit {
-  orders: OrdersInfo[] | null = null;
+  orders: OrdersInfo[] = [];
   loading: boolean = true;
 
   constructor(
@@ -18,12 +18,12 @@ export class TabOrdersComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.ordersService.fetchOrdersByUser().subscribe((_orders) => {
+    this.ordersService.fetchOrdersByUser()?.subscribe((_orders) => {
       this.orders = _orders;
+      console.log(this.orders);
     });
 
     this.uiService.loadingChanged.subscribe((isLoad) => {
-      console.log('loading: ', isLoad);
       this.loading = isLoad;
     });
   }
