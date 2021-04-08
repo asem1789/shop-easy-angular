@@ -4,7 +4,7 @@ const { db } = require("../firebase_connection");
 exports.products = async () => {
   const data = [
     {
-      id: uniqid("shop", "easy"),
+      id: uniqid("product"),
       name: "breasted man",
       price: 50,
       images: [
@@ -14,7 +14,7 @@ exports.products = async () => {
       ],
     },
     {
-      id: uniqid("shop", "easy"),
+      id: uniqid("product"),
       name: "cap",
       price: 28,
       images: [
@@ -23,7 +23,7 @@ exports.products = async () => {
       ],
     },
     {
-      id: uniqid("shop", "easy"),
+      id: uniqid("product"),
       name: "Jaket black",
       price: 40,
       images: [
@@ -32,7 +32,7 @@ exports.products = async () => {
       ],
     },
     {
-      id: uniqid("shop", "easy"),
+      id: uniqid("product"),
       name: "Jaket brown",
       price: 38,
       images: [
@@ -41,7 +41,7 @@ exports.products = async () => {
       ],
     },
     {
-      id: uniqid("shop", "easy"),
+      id: uniqid("product"),
       name: "Jaket Fur",
       price: 35,
       images: [
@@ -50,7 +50,7 @@ exports.products = async () => {
       ],
     },
     {
-      id: uniqid("shop", "easy"),
+      id: uniqid("product"),
       name: "Jeans black",
       price: 30,
       images: [
@@ -59,7 +59,7 @@ exports.products = async () => {
       ],
     },
     {
-      id: uniqid("shop", "easy"),
+      id: uniqid("product"),
       name: "Shoes",
       price: 55,
       images: [
@@ -69,7 +69,7 @@ exports.products = async () => {
       ],
     },
     {
-      id: uniqid("shop", "easy"),
+      id: uniqid("product"),
       name: "Suits gray",
       price: 80,
       images: [
