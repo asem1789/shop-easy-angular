@@ -1,5 +1,6 @@
 .product-page {
   padding: 6rem 2rem;
+  position: relative;
 }
 
 .cards-wrap {
@@ -14,4 +15,15 @@
 
 .card-item:not(:last-child) {
   margin-bottom: 3rem;
+}
+
+.product-loading-icon {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.product-loading-icon::ng-deep circle {
+  stroke: var(--spinner-stroke);
 }
