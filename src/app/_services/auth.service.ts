@@ -35,9 +35,8 @@ const handleError = (err: any) => {
   providedIn: 'root',
 })
 export class AuthService {
-  userData = new Subject<User>();
-  authChange = new Subject<boolean>();
-  private userInfo!: User;
+  userInfoChange = new Subject<User | null>();
+  private userInfo: User | null = null;
   private isAuth: boolean = false;
 
   constructor(
@@ -50,11 +49,15 @@ export class AuthService {
   authListener() {
     this.afAuth.authState.subscribe((user) => {
       if (user) {
-        this.authSuccessfully(user);
+        const currUser = {
+          id: user.uid,
+          name: user.displayName ? user.displayName : '',
+          photo: user.photoURL!,
+        };
+        this.userInfo = currUser;
+        this.userInfoChange.next(currUser);
       } else {
-        this.authChange.next(false);
-        this.isAuth = false;
-        this.userData.next({ name: '', photo: '', id: '' });
+        this.userInfoChange.next(null);
       }
     });
   }
@@ -79,12 +82,9 @@ export class AuthService {
     this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then((res) => {
-        // #note: update userProfile, to Get updated data when use "this.afAuth.authState"
-        // instead make another fetch to get userInfo from AngularFirestore
         this.afAuth.currentUser.then((currUser) => {
           currUser?.updateProfile(additionalData).then(() => {
             this.uiService.loadingChanged.next(false);
-            // Update userDocument, with moreData if there are;
             this.createUserProfile(currUser);
           });
         });
@@ -110,8 +110,7 @@ export class AuthService {
 
   logout() {
     this.afAuth.signOut().then(() => {
-      this.authChange.next(false);
-      this.isAuth = false;
+      this.userInfoChange.next(null);
       this.router.navigate(['/login']);
     });
   }
@@ -134,19 +133,7 @@ export class AuthService {
     return this.userInfo;
   }
 
-  isLoggin() {
-    return this.isAuth;
-  }
-
-  private authSuccessfully(user: any) {
-    const currUser = {
-      id: user.uid,
-      name: user.displayName ? user.displayName!.split(' ')[0] : '',
-      photo: user.photoURL!,
-    };
-    this.authChange.next(true);
-    this.isAuth = true;
-    this.userInfo = currUser;
-    this.userData.next(currUser);
+  isLogged() {
+    return !!this.userInfo;
   }
 }

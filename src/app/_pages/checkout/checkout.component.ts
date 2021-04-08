@@ -66,7 +66,13 @@ export class CheckoutComponent implements OnInit {
   }
 
   submitOrder() {
-    const userId = this.authService.getUserInfo().id;
+    let userId;
+    let user = this.authService.getUserInfo();
+    if (user && user.id) {
+      userId = user.id;
+    } else {
+      return;
+    }
     const data: OrdersInfo = {
       price: this.totalPrice,
       status: OrderStatus.Processing,

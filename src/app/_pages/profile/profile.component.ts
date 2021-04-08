@@ -25,9 +25,9 @@ export class ProfileComponent implements OnInit {
      * @note
      * to ensur not render page profile until result of authChnage come from firebase
      */
-    this.authService.authChange.subscribe((isAuth) => {
+    this.authService.userInfoChange.subscribe((user) => {
       this.loading = false;
-      this.isAuth = isAuth;
+      this.isAuth = !!user;
     });
 
     this.route.queryParams.subscribe((params) => {
@@ -37,8 +37,8 @@ export class ProfileComponent implements OnInit {
       this.currentTab = params.tab;
     });
 
-    this.isAuth = this.authService.isLoggin();
-    this.authService.userData.subscribe((user: any) => {
+    this.isAuth = this.authService.isLogged();
+    this.authService.userInfoChange.subscribe((user: any) => {
       this.userInfo = user;
     });
   }

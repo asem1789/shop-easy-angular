@@ -27,7 +27,13 @@ export class OrdersService implements OnInit {
 
   fetchOrdersByUser() {
     this.uiService.loadingChanged.next(true);
-    const userId = this.authService.getUserInfo().id;
+    let userId: any;
+    let user = this.authService.getUserInfo();
+    if (user && user.id) {
+      userId = user.id;
+    } else {
+      return;
+    }
     return this.db
       .collection('orders', (ref) => ref.where('user', '==', userId))
       .get()
@@ -46,18 +52,19 @@ export class OrdersService implements OnInit {
 
   saveOrder(order: OrdersInfo) {
     this.uiService.loadingChanged.next(true);
+    this.cartService.clearAll();
 
-    this.db
-      .collection('orders')
-      .add(order)
-      .then(() => {
-        this.uiService.loadingChanged.next(false);
-        this.cartService.clearAll();
-        this.router.navigate(['/me'], { queryParams: { tab: 'orders' } });
-      })
-      .catch((err) => {
-        this.uiService.loadingChanged.next(false);
-        console.log('error from save ORder: ', err);
-      });
+    // this.db
+    //   .collection('orders')
+    //   .add(order)
+    //   .then(() => {
+    //     this.uiService.loadingChanged.next(false);
+    //     this.cartService.clearAll();
+    //     this.router.navigate(['/me'], { queryParams: { tab: 'orders' } });
+    //   })
+    //   .catch((err) => {
+    //     this.uiService.loadingChanged.next(false);
+    //     console.log('error from save ORder: ', err);
+    //   });
   }
 }

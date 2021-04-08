@@ -12,8 +12,7 @@ import { UtilsService } from 'src/app/_services/utils.service';
 export class HeaderComponent implements OnInit {
   showSide: boolean = false;
   showDorpDown: boolean = false;
-  isAuth = false;
-  userInfo!: User;
+  userInfo: User | null = null;
   cartCount: number = 0;
   showDropDownCart: boolean = false;
   itemsSelected: CartInfo[] = [];
@@ -29,11 +28,7 @@ export class HeaderComponent implements OnInit {
       this.showSide = res;
     });
 
-    this.authService.authChange.subscribe((authStatus) => {
-      this.isAuth = authStatus;
-    });
-
-    this.authService.userData.subscribe((user) => {
+    this.authService.userInfoChange.subscribe((user) => {
       this.userInfo = user;
     });
 
