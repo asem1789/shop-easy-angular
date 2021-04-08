@@ -37,6 +37,8 @@ const handleError = (err: any) => {
 export class AuthService {
   userData = new Subject<User>();
   authChange = new Subject<boolean>();
+  private userInfo!: User;
+  private isAuth: boolean = false;
 
   constructor(
     private afstore: AngularFirestore,
@@ -51,7 +53,8 @@ export class AuthService {
         this.authSuccessfully(user);
       } else {
         this.authChange.next(false);
-        this.userData.next({ name: '', photo: '' });
+        this.isAuth = false;
+        this.userData.next({ name: '', photo: '', id: '' });
       }
     });
   }
@@ -108,6 +111,7 @@ export class AuthService {
   logout() {
     this.afAuth.signOut().then(() => {
       this.authChange.next(false);
+      this.isAuth = false;
       this.router.navigate(['/login']);
     });
   }
@@ -126,12 +130,23 @@ export class AuthService {
     });
   }
 
+  getUserInfo() {
+    return this.userInfo;
+  }
+
+  isLoggin() {
+    return this.isAuth;
+  }
+
   private authSuccessfully(user: any) {
     const currUser = {
+      id: user.uid,
       name: user.displayName ? user.displayName!.split(' ')[0] : '',
       photo: user.photoURL!,
     };
     this.authChange.next(true);
+    this.isAuth = true;
+    this.userInfo = currUser;
     this.userData.next(currUser);
   }
 }

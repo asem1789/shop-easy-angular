@@ -89,6 +89,15 @@ export class CartService implements OnInit {
     this.countOfItems();
   }
 
+  clearAll() {
+    if (!this.cartItems.length) return;
+
+    this.cartItems = [];
+    this.cartItemsChanged.next(this.cartItems);
+    this.storeCartItems();
+    this.countOfItems();
+  }
+
   get allItems() {
     return this.cartItems;
   }

@@ -1,2 +1,36 @@
-<h2>Under Processing</h2>
-<p>Orders tab</p>
+<div class="order-tab">
+  <h2 class="order-title">Manage Your Orders</h2>
+  <div class="tab-content">
+    <div *ngIf="orders" class="table order-table">
+      <div class="table-head">
+        <div class="table-row">
+          <span>Date</span>
+          <span>Time</span>
+          <span>Pyment</span>
+          <span>Status</span>
+          <span>Details</span>
+          <span>Control</span>
+        </div>
+      </div>
+      <div class="table-body">
+        <div *ngFor="let order of orders" class="table-row">
+          <span>{{ order.createdAt && order.createdAt | date }}</span>
+          <span>{{
+            order.createdAt && order.createdAt | date: "h:mm:ss a"
+          }}</span>
+          <span>{{ order.price | currency }}</span>
+          <span>{{ order.status }}</span>
+          <span><button class="btn-details">Show details</button></span>
+          <span>
+            <button class="btn-cancel">Cancel Order</button>
+          </span>
+        </div>
+      </div>
+    </div>
+    <mat-spinner
+      *ngIf="loading"
+      class="loading-icon"
+      strokeWidth="4"
+    ></mat-spinner>
+  </div>
+</div>

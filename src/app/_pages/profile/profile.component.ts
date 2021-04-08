@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { User } from 'src/app/models';
+import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
   selector: 'my-profile',
@@ -8,15 +10,36 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
   currentTab: string = 'orders';
+  isAuth: boolean = false;
+  loading: boolean = false;
+  userInfo!: User;
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
+    /**
+     * @note
+     * to ensur not render page profile until result of authChnage come from firebase
+     */
+    this.authService.authChange.subscribe((isAuth) => {
+      this.loading = false;
+      this.isAuth = isAuth;
+    });
+
     this.route.queryParams.subscribe((params) => {
       if (!params.tab) {
         this.router.navigate(['/me'], { queryParams: { tab: 'orders' } });
       }
       this.currentTab = params.tab;
+    });
+
+    this.isAuth = this.authService.isLoggin();
+    this.authService.userData.subscribe((user: any) => {
+      this.userInfo = user;
     });
   }
 
