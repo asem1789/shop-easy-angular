@@ -4,9 +4,10 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import firebase from 'firebase/app';
 import { Router } from '@angular/router';
 
-import { Subject } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { User } from '../models';
 import { UiService } from './ui.service';
+import { map, switchMap } from 'rxjs/operators';
 
 const handleError = (err: any) => {
   let msg;
@@ -37,13 +38,34 @@ const handleError = (err: any) => {
 export class AuthService {
   userInfoChange = new Subject<User | null>();
   private userInfo: User | null = null;
+  /**
+   * @qestion
+   * user$ to hanle auth.guard, because I'm using a userInfoChnage but not work
+   * @@Is this way ok ?
+   */
+  user$: Observable<User | null>;
 
   constructor(
     private afstore: AngularFirestore,
     private afAuth: AngularFireAuth,
     private router: Router,
     private uiService: UiService
-  ) {}
+  ) {
+    this.user$ = this.afAuth.authState.pipe(
+      map((user) => {
+        if (user) {
+          const currUser = {
+            id: user.uid,
+            name: user.displayName ? user.displayName : '',
+            photo: user.photoURL!,
+          };
+          return currUser;
+        } else {
+          return null;
+        }
+      })
+    );
+  }
 
   authListener() {
     this.afAuth.authState.subscribe((user) => {
@@ -118,7 +140,6 @@ export class AuthService {
     const userRef = this.afstore.doc(`users/${userAuth.uid}`);
     userRef.get().subscribe((res: any) => {
       if (!res.exists) {
-        console.log('createPrfoie: ', res.exists);
         const { displayName, email } = userAuth;
         const createdAt = new Date();
         userRef.set({ displayName, email, createdAt });
