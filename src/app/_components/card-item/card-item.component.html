@@ -1,5 +1,5 @@
 <div class="card">
-  <div class="like-icon-wrap">
+  <div *ngIf="isAuth" class="like-icon-wrap">
     <mat-icon mySelectFavorite class="like-icon">favorite_border</mat-icon>
   </div>
   <div class="card-header">
@@ -19,8 +19,11 @@
     <div class="imgs-info">{{ currentIndex + 1 }}/{{ item.images.length }}</div>
   </div>
   <div class="card-detail">
-    <button (click)="handleAddToCart()" class="custom-btn hide">
+    <button *ngIf="isAuth" (click)="handleAddToCart()" class="custom-btn hide">
       Add To Cart
+    </button>
+    <button *ngIf="!isAuth" routerLink="/login" class="custom-btn hide">
+      Sign in to Access
     </button>
     <h3 class="item-name">{{ item.name }}</h3>
     <p class="item-price">{{ item.price | currency }}</p>

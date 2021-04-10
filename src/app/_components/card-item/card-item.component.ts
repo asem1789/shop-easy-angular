@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Products } from 'src/app/models/Products';
+import { AuthService } from 'src/app/_services/auth.service';
 import { CartService } from 'src/app/_services/cart.service';
 
 @Component({
@@ -10,10 +11,20 @@ import { CartService } from 'src/app/_services/cart.service';
 export class CardItemComponent implements OnInit {
   @Input() item!: Products;
   currentIndex: number = 0;
+  isAuth: boolean = false;
 
-  constructor(private cartService: CartService) {}
+  constructor(
+    private cartService: CartService,
+    private authService: AuthService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.authService.user$.subscribe((user) => {
+      this.isAuth = !!user;
+    });
+
+    this.isAuth = this.authService.isLogged();
+  }
 
   handleNext() {
     if (this.currentIndex < this.item.images.length - 1) {
