@@ -33,6 +33,8 @@ import { TabSettingsComponent } from './_pages/profile/tab-settings/tab-settings
 import { TabOrdersComponent } from './_pages/profile/tab-orders/tab-orders.component';
 import { TabFavoritesComponent } from './_pages/profile/tab-favorites/tab-favorites.component';
 import { CommonModule } from '@angular/common';
+import { SelectComponent } from './_components/select/select.component';
+import { FilterByStatusPipe } from './shared/pipes/filter-by-status.pipe';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,8 @@ import { CommonModule } from '@angular/common';
     TabSettingsComponent,
     TabOrdersComponent,
     TabFavoritesComponent,
+    SelectComponent,
+    FilterByStatusPipe,
   ],
   imports: [
     BrowserModule,
