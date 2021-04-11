@@ -1,0 +1,61 @@
+<div class="detail">
+  <div class="detail-content">
+    <h2 class="order-title">Detail Order</h2>
+    <div class="order-state" fxLayout>
+      <h4 class="state-copy">Status:</h4>
+      <span>{{ order.status }}</span>
+    </div>
+    <div class="order-detail">
+      <div>
+        <h4 class="order-info">Name: <span>Ahmad Khaled</span></h4>
+        <h4 class="order-info">
+          Total Price: <span>{{ order.price }}</span>
+        </h4>
+      </div>
+      <div>
+        <h4 class="order-info">
+          Date: <span>{{ order.createdAt | date }}</span>
+        </h4>
+        <h4 class="order-info">
+          time: <span>{{ order.createdAt | date: "h:mm:ss a" }}</span>
+        </h4>
+      </div>
+    </div>
+    <div class="info-warpper">
+      <div class="table info-left">
+        <div class="table-head">
+          <div class="table-row">
+            <span class="col-name">Product</span>
+            <span>price/unit</span>
+            <span>count</span>
+            <span>total price</span>
+          </div>
+        </div>
+        <div *ngIf="order.productsRef.length > 0" class="table-body">
+          <div
+            *ngFor="let product of order.productsRef; let i = index"
+            (click)="selectedRow(product.image)"
+            class="table-row"
+            [first]="i === 0"
+            mySelectRow
+          >
+            <span class="col-name">{{ product.name }}</span>
+            <span>{{ product.price }}</span>
+            <span>{{ product.count }}</span>
+            <span>{{ product.price * product.count }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="info-right">
+        <img *ngIf="img" class="product-img" src="{{ img }}" />
+        <div *ngIf="!img">
+          <p class="review-title">Image Review</p>
+          <p class="review-text">CLick on Product</p>
+        </div>
+      </div>
+    </div>
+    <div class="detail-footer">
+      <button (click)="onClick()" class="btn-ok">Ok</button>
+    </div>
+  </div>
+</div>

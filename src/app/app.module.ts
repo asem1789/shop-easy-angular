@@ -35,6 +35,8 @@ import { TabFavoritesComponent } from './_pages/profile/tab-favorites/tab-favori
 import { CommonModule } from '@angular/common';
 import { SelectComponent } from './_components/select/select.component';
 import { FilterByStatusPipe } from './shared/pipes/filter-by-status.pipe';
+import { DetailScreen } from './_pages/profile/sections/detail-screen/detail-screen.component';
+import { SelectRowDirective } from './shared/directives/select-row.directive';
 
 @NgModule({
   declarations: [
@@ -60,6 +62,8 @@ import { FilterByStatusPipe } from './shared/pipes/filter-by-status.pipe';
     TabFavoritesComponent,
     SelectComponent,
     FilterByStatusPipe,
+    DetailScreen,
+    SelectRowDirective,
   ],
   imports: [
     BrowserModule,

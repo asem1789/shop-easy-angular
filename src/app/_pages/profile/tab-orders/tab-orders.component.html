@@ -17,12 +17,12 @@
           <span>Pyment</span>
           <span>Status</span>
           <span>Details</span>
-          <span *ngIf="show()">Control</span>
+          <span *ngIf="showControlState()">Control</span>
         </div>
       </div>
       <div class="table-body">
         <div
-          *ngFor="let order of orders | filterByStatus: selected"
+          *ngFor="let order of orders | filterByStatus: selected; index as i"
           class="table-row"
         >
           <span>{{ order.createdAt && order.createdAt | date }}</span>
@@ -31,8 +31,17 @@
           }}</span>
           <span>{{ order.price | currency }}</span>
           <span>{{ order.status }}</span>
-          <span><button class="btn-details">Show details</button></span>
-          <span *ngIf="show()">
+          <span class="span-detail"
+            ><button (click)="showDetailsOrder(i)" class="btn-details">
+              Show details
+            </button>
+            <my-detail-screen
+              (clickedBtn)="onCloseDetails()"
+              *ngIf="showDetails"
+              [order]="orderSelected"
+            ></my-detail-screen>
+          </span>
+          <span *ngIf="showControlState()">
             <button class="btn-cancel">Cancel Order</button>
           </span>
         </div>
