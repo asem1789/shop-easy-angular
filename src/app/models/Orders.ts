@@ -10,6 +10,9 @@ export interface OrdersInfo {
 interface ProductsRef {
   id: string;
   count: number;
+  name: string;
+  image: string;
+  price: number;
 }
 
 export enum OrderStatus {

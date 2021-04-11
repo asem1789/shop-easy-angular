@@ -1,0 +1,27 @@
+<div (click)="toggleOptions()" class="select-wrap">
+  <input
+    value="{{ selectedValue }}"
+    (offClick)="showOptions = false"
+    myClickOutside
+    class="input-main"
+    type="text"
+    readonly
+    [ngClass]="{ 'input-active': showOptions }"
+  />
+  <mat-icon class="select-icon">expand_more</mat-icon>
+  <div *ngIf="showOptions" class="options">
+    <label
+      (click)="onSelectClick(input)"
+      class="label"
+      *ngFor="let option of options"
+    >
+      <input
+        value="{{ option }}"
+        class="input-option"
+        style="display: none"
+        #input
+      />
+      {{ option }}
+    </label>
+  </div>
+</div>

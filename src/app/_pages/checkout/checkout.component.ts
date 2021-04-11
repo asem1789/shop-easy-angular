@@ -66,7 +66,13 @@ export class CheckoutComponent implements OnInit {
     const items = this.cartService.getAllItems();
     let result: any = [];
     items.forEach((el) => {
-      result.push({ count: el.quantity, id: el.id });
+      result.push({
+        name: el.name,
+        image: el.images[0],
+        count: el.quantity,
+        id: el.id,
+        price: el.price,
+      });
     });
 
     return result;
