@@ -25,10 +25,8 @@
           *ngFor="let order of orders | filterByStatus: selected; index as i"
           class="table-row"
         >
-          <span>{{ order.createdAt && order.createdAt | date }}</span>
-          <span>{{
-            order.createdAt && order.createdAt | date: "h:mm:ss a"
-          }}</span>
+          <span>{{ order.createdAt && order.createdAt | date: "M,y" }}</span>
+          <span>{{ order.createdAt && order.createdAt | date: "h:mm a" }}</span>
           <span>{{ order.price | currency }}</span>
           <span>{{ order.status }}</span>
           <span class="span-detail"
@@ -42,7 +40,9 @@
             ></my-detail-screen>
           </span>
           <span *ngIf="showControlState()">
-            <button class="btn-cancel">Cancel Order</button>
+            <button (click)="showConfirmCancel(order.id)" class="btn-cancel">
+              Cancel Order
+            </button>
           </span>
         </div>
       </div>
@@ -52,5 +52,21 @@
       class="loading-icon"
       strokeWidth="4"
     ></mat-spinner>
+  </div>
+  <div *ngIf="showConfirm" class="card">
+    <div class="card-body">
+      <p class="card-message">Are you sure to cancel this Order?</p>
+    </div>
+    <div class="card-footer">
+      <button
+        [ngClass]="{ 'btn-disable': loadingUpdate }"
+        (click)="handleCancleOrder()"
+        class="card-btn btn-yes"
+      >
+        <span *ngIf="!loadingUpdate"> Yes </span>
+        <span *ngIf="loadingUpdate">waiting ...</span>
+      </button>
+      <button (click)="closeCard()" class="card-btn btn-no">No</button>
+    </div>
   </div>
 </div>
