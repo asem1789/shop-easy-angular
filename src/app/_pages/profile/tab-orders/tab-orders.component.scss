@@ -89,3 +89,41 @@
   color: #17a2b8;
   padding-left: 20px;
 }
+
+.card {
+  padding: 15px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #0c3661;
+  width: 350px;
+  border-radius: 5px;
+  z-index: 100;
+  color: #fff;
+}
+
+.card-message {
+  margin-bottom: 30px;
+  font-size: 2rem;
+}
+
+.card-btn {
+  font-size: 1.8rem;
+  border: 1px solid #ddd;
+  padding: 4px 10px;
+  width: 100px;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.btn-yes {
+  margin-right: 20px;
+}
+
+.btn-disable {
+  pointer-events: none;
+}

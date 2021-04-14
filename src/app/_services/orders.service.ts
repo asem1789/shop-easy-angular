@@ -13,7 +13,6 @@ import { Subject } from 'rxjs';
 })
 export class OrdersService implements OnInit {
   ordersByUserChange = new Subject<any[]>();
-  private ordersById: any[] = [];
 
   constructor(
     private db: AngularFirestore,
@@ -63,6 +62,19 @@ export class OrdersService implements OnInit {
       .catch((err) => {
         this.uiService.loadingChanged.next(false);
         console.log('error from save ORder: ', err);
+      });
+  }
+
+  updateOrderById(id: string, updatedData: any) {
+    return this.db
+      .collection('orders')
+      .doc(id)
+      .update({ ...updatedData })
+      .then(() => {
+        this.fetchOrdersByUser()?.subscribe();
+      })
+      .catch((err) => {
+        return err;
       });
   }
 }
